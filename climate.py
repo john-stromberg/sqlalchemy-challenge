@@ -1,6 +1,5 @@
 # import dependencies
 import numpy as np
-import pandas as pd
 import datetime as dt
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
@@ -9,7 +8,7 @@ from sqlalchemy import create_engine, func
 from flask import Flask, jsonify
 
 #database connection
-engine = create_engine("sqlite:///Resources/hawaii.sqlite")
+engine = create_engine("sqlite:////Users\johns\Desktop\Repositories\sqlalchemy-challenge\Resources\hawaii.sqlite")
 # reflect an existing database into a new model
 Base = automap_base()
 # reflect the tables
