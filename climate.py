@@ -1,5 +1,6 @@
 # import dependencies
 import numpy as np
+import pandas as pd
 import datetime as dt
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
@@ -18,7 +19,7 @@ Base.prepare(engine, reflect=True)
 Measurement = Base.classes.measurement
 Station = Base.classes.station
 
-# Create our session (link) from Python to the DB
+# Create session to the DB
 session = Session(engine)
 
 app = Flask(__name__)
@@ -41,6 +42,7 @@ def home():
 # Return the JSON representation of dictionary
 @app.route("/api/v1.0/precipitation")
 def precipitation():
+    session = Session(engine)
     last_date = session.query(Measurement.date).order_by(Measurement.date.desc()).first()
     one_year = dt.date(2017,8,23) - dt.timedelta(days=365)
     prcp_scores = session.query(Measurement.date, Measurement.prcp).filter(Measurement.date > one_year).order_by(Measurement.date).all()
@@ -49,7 +51,9 @@ def precipitation():
 #Return a JSON list of stations from the dataset.
 @app.route("/api/v1.0/stations")
 def stations():
-    all_stations = session.query(Station.station, Station.name).all()
+    session = session(engine)
+    all_stations = session.query(Station.name).all()
+    
     return jsonify(all_stations)
 
 # query for the dates and temperature observations from a year from the last data point.
