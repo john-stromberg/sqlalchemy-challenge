@@ -1,3 +1,8 @@
+> **Moved:** This project is maintained in [data-analytics-bootcamp-2019/projects/sqlalchemy-challenge](https://github.com/john-stromberg/data-analytics-bootcamp-2019/tree/main/projects/sqlalchemy-challenge).
+> This repository is retained as a historical snapshot.
+
+---
+
 # SQLAlchemy - Surfs Up!
 
 ![surfs-up.png](Images/surfs-up.png)
